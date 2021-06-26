@@ -29,7 +29,12 @@ app.get('/', (req, res) => {
 
 app.route('/api/users')
 .get((req, res) => {
-  
+  User.find()
+      .select({log: 0, __v: 0})
+      .exec((err, data) => {
+        if (err) return res.json({error: err});
+        res.json(data);
+      })
 })
 
 
