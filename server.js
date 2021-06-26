@@ -27,6 +27,10 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/views/index.html')
 });
 
+app.route('/api/users')
+.get((req, res) => {
+  
+})
 
 
 
