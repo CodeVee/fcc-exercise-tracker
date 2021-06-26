@@ -36,6 +36,9 @@ app.route('/api/users')
         res.json(data);
       })
 })
+.post((req, res) => {
+  
+});
 
 
 
