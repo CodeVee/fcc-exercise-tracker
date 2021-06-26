@@ -80,6 +80,13 @@ app.get('/api/users/:_id/logs', (req, res) => {
     if(err) return res.json({error: err});
     const response = {...data._doc};
 
+    if (from && to) {
+      response.log = response.log.filter(l => l.date >= new Date(from) && l.date <= new Date(to));
+    }
+  
+    if (limit) {
+      response.log = response.log.slice(0, limit);
+    }
 
     response.count = response.log.length
     res.json(response);
