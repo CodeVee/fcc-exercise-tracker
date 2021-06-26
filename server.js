@@ -37,7 +37,12 @@ app.route('/api/users')
       })
 })
 .post((req, res) => {
-  
+  const user = new User({username: req.body.username});
+  user.save((err, data) => {
+    if (err) return res.json({error: err});
+    
+    res.json({"username": data.username, "_id": data._id});
+  });
 });
 
 
