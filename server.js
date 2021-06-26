@@ -73,7 +73,17 @@ app.post('/api/users/:_id/exercises', (req, res) => {
 })
 
 app.get('/api/users/:_id/logs', (req, res) => {
-  
+  const userId = req.params._id;
+  const {from, to , limit} = req.query;
+
+  User.findById({_id: userId}, (err, data) => {
+    if(err) return res.json({error: err});
+    const response = {...data._doc};
+
+
+    response.count = response.log.length
+    res.json(response);
+  })
 })
 
 
