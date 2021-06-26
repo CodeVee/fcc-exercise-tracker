@@ -46,7 +46,29 @@ app.route('/api/users')
 });
 
 app.post('/api/users/:_id/exercises', (req, res) => {
-  
+  const userId = req.params._id;
+  const { description, duration, date } = req.body;
+  const reqDate =  date ? new Date(date) : new Date();
+  const log = {description: description, duration: duration, date: reqDate};
+
+  User.findById(userId, (err, user) => {
+    if(err) return res.json({error: err});
+    user.log.push(log);
+
+    user.save((err, updateduser) => {
+      if(err) return res.json({error: err});
+
+      const response = {
+        _id: updateduser._id,
+        username: updateduser.username,
+        date: log.date.toDateString(),
+        duration: Number(duration),
+        description: description,
+      }
+      
+      res.json(response);
+    })
+  })
   
 })
 
