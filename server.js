@@ -45,6 +45,11 @@ app.route('/api/users')
   });
 });
 
+app.post('/api/users/:_id/exercises', (req, res) => {
+  
+  
+})
+
 
 
 
