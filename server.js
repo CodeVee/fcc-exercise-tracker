@@ -81,6 +81,8 @@ app.get('/api/users/:_id/logs', (req, res) => {
     const response = {...data._doc};
 
     if (from && to) {
+      const fromDate = new Date(from);
+      const toDate = new Date(to);
       response.log = response.log.filter(l => l.date >= new Date(from) && l.date <= new Date(to));
     }
   
