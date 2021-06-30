@@ -49,7 +49,7 @@ app.post('/api/users/:_id/exercises', (req, res) => {
   const userId = req.params._id;
   const { description, duration, date } = req.body;
   const adjDate =  date ? new Date(date) : new Date();
-  const log = {description: description, duration: duration, date: reqDate};
+  const log = {description: description, duration: duration, date: adjDate};
 
   User.findById(userId, (err, user) => {
     if(err) return res.json({error: err});
