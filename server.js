@@ -48,7 +48,7 @@ app.route('/api/users')
 app.post('/api/users/:_id/exercises', (req, res) => {
   const userId = req.params._id;
   const { description, duration, date } = req.body;
-  const reqDate =  date ? new Date(date) : new Date();
+  const adjDate =  date ? new Date(date) : new Date();
   const log = {description: description, duration: duration, date: reqDate};
 
   User.findById(userId, (err, user) => {
